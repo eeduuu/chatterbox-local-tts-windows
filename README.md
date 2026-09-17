@@ -101,7 +101,7 @@ La estructura prevista es:
 
 ```text
 voces/
-└── voz.mp3
+└── voz_predeterminada.mp3
 ```
 
 También pueden utilizarse archivos `.wav`.
