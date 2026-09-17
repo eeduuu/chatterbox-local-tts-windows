@@ -40,7 +40,13 @@ wsl -d Ubuntu-22.04
 
 # 2. Activar el entorno `chatterbox`
 
-Ejecuta:
+Carga Conda:
+
+```bash
+source "$HOME/miniforge3/etc/profile.d/conda.sh"
+```
+
+Después activa el entorno:
 
 ```bash
 conda activate chatterbox
