@@ -124,7 +124,7 @@ es correcto.
 Ejecuta:
 
 ```bash
-python -m pip install chatterbox-tts
+python -m pip install chatterbox-tts==0.1.7
 ```
 
 Este comando instalará Chatterbox y sus dependencias de Python dentro del entorno:
