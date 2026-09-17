@@ -496,13 +496,13 @@ El nombre se obtiene automáticamente del nombre del guion.
 Por ejemplo, si seleccionas:
 
 ```text
-nana_soloq.txt
+guion_ejemplo.txt
 ```
 
 se generará:
 
 ```text
-nana_soloq_voz.wav
+guion_ejemplo_voz.wav
 ```
 
 dentro de:
@@ -674,7 +674,7 @@ Abre el archivo generado con cualquier reproductor compatible.
 Por ejemplo:
 
 ```text
-nana_soloq_voz.wav
+guion_ejemplo_voz.wav
 ```
 
 Comprueba:
