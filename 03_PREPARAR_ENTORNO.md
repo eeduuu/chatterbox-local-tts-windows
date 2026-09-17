@@ -436,13 +436,13 @@ Si cierras la terminal y vuelves más adelante, entra primero en Ubuntu:
 wsl -d Ubuntu-22.04
 ```
 
-Normalmente Conda ya estará disponible porque ejecutamos:
+Carga Conda:
 
 ```bash
-conda init bash
+source "$HOME/miniforge3/etc/profile.d/conda.sh"
 ```
 
-Activa el entorno con:
+Después activa el entorno:
 
 ```bash
 conda activate chatterbox
@@ -454,7 +454,9 @@ Debes volver a ver:
 (chatterbox)
 ```
 
-antes del nombre de usuario.
+al principio de la terminal.
+
+Este paso carga Conda explícitamente y evita depender de que se haya inicializado automáticamente al abrir Ubuntu.
 
 ---
 
