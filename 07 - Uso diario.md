@@ -28,7 +28,7 @@ Guarda el texto que quieres convertir a voz en un archivo:
 Por ejemplo:
 
 ```text
-video_nana.txt
+guion_video.txt
 ```
 
 Puedes guardarlo en cualquier carpeta de Windows.
@@ -42,42 +42,42 @@ No es necesario copiarlo dentro del repositorio.
 Puedes utilizar texto normal:
 
 ```text
-Lo raro de Nana es que casi nunca te sorprende.
+Esta es la primera idea del vídeo.
 
-Tú sabes lo que hace.
+Después continúa la explicación.
 
-Y aun así, cuando aparece la oportunidad... ahí vas.
+Finalmente llega la siguiente parte.
 ```
 
 También puedes conservar timestamps:
 
 ```text
-[0:00–0:51]
+[0:00–0:45]
 
-Lo raro de Nana es que casi nunca te sorprende.
+Texto correspondiente a la primera parte.
 
-Tú sabes lo que hace.
+[0:45–1:30]
 
-[0:51–1:41]
-
-Por eso Nana funciona tan bien en SoloQ.
+Texto correspondiente a la segunda parte.
 ```
 
-El generador reconoce líneas con este formato y no las pronuncia:
+El generador reconoce líneas con este formato:
 
 ```text
-[0:00–0:51]
+[0:00–0:45]
 ```
 
-Los tiempos sirven para organizar el guion.
+y no las envía a Chatterbox como texto hablado.
 
-No obligan a Chatterbox a producir exactamente esa duración.
+Los timestamps sirven únicamente para organizar el guion.
+
+No obligan al modelo a producir exactamente esa duración.
 
 ---
 
 # 3. Preparar el texto para TTS
 
-Chatterbox puede leer correctamente un texto normal, pero la puntuación influye mucho en:
+Chatterbox puede leer un texto normal, pero la puntuación influye bastante en:
 
 - velocidad;
 - respiraciones;
@@ -88,26 +88,26 @@ Chatterbox puede leer correctamente un texto normal, pero la puntuación influye
 Por ejemplo:
 
 ```text
-Lo sabes. Lo has vivido. Y aun así, ahí vas.
+Ya sabes lo que ocurre. Lo has visto antes. Aun así, sigues adelante.
 ```
 
-puede sonar diferente a:
+puede tener un ritmo diferente a:
 
 ```text
-Lo sabes... Lo has vivido... Y aun así, ahí vas.
+Ya sabes lo que ocurre... Lo has visto antes... Aun así, sigues adelante.
 ```
 
 No es necesario llenar el guion de puntos suspensivos.
 
-Úsalos únicamente donde tenga sentido dejar una pausa perceptible.
+Utilízalos únicamente cuando tenga sentido dejar una pausa perceptible.
 
-Las comas también pueden ayudar a evitar que una frase larga se lea demasiado seguida.
+Las comas también pueden ayudar a que una frase larga no se lea demasiado seguida.
 
 ---
 
 # 4. No intentes controlar la duración exacta con puntuación
 
-La puntuación puede ralentizar ligeramente la lectura, pero no debe utilizarse para intentar convertir artificialmente:
+La puntuación puede modificar ligeramente el ritmo, pero no debe utilizarse para intentar transformar artificialmente:
 
 ```text
 30 segundos
@@ -126,7 +126,7 @@ Si se fuerza demasiado, la lectura puede sonar:
 - entrecortada;
 - poco natural.
 
-El objetivo debe ser mejorar el ritmo, no alcanzar una duración matemática.
+El objetivo es mejorar el ritmo y la naturalidad, no alcanzar una duración matemática.
 
 ---
 
@@ -157,16 +157,12 @@ No necesitas:
 
 Aparecerá una ventana para elegir un archivo.
 
-Selecciona tu:
-
-```text
-.txt
-```
+Selecciona el `.txt` que quieras convertir a voz.
 
 Por ejemplo:
 
 ```text
-video_nana.txt
+guion_video.txt
 ```
 
 Si cancelas esta ventana, el programa se cerrará sin generar nada.
@@ -218,12 +214,6 @@ voces/
 
 El selector puede abrir un archivo situado en cualquier carpeta de Windows.
 
-Por ejemplo:
-
-```text
-D:\Voces\otra_voz.wav
-```
-
 El lanzador convertirá automáticamente esa ruta para que WSL pueda utilizarla.
 
 ---
@@ -240,7 +230,7 @@ Verás algo parecido a:
 ========================================
 ```
 
-El programa mostrará:
+El programa mostrará información como:
 
 ```text
 Guion:
@@ -292,14 +282,14 @@ Durante la generación verás:
 
 ```text
 [1/8]
-Texto...
+Texto del bloque...
 ```
 
 después:
 
 ```text
 [2/8]
-Texto...
+Texto del bloque...
 ```
 
 y así sucesivamente.
@@ -324,7 +314,7 @@ Sampling: 57% ...
 
 Es normal.
 
-No representa el porcentaje total del vídeo.
+No representa el porcentaje total del guion.
 
 Representa la generación del bloque actual.
 
@@ -336,7 +326,7 @@ Esta configuración utiliza CPU.
 
 Por tanto, la generación no es en tiempo real.
 
-Es completamente normal que:
+Es normal que:
 
 ```text
 30 segundos de audio
@@ -387,13 +377,13 @@ El nombre se basa en el archivo del guion.
 Por ejemplo:
 
 ```text
-video_nana.txt
+guion_video.txt
 ```
 
 produce:
 
 ```text
-video_nana_voz.wav
+guion_video_voz.wav
 ```
 
 ---
@@ -433,33 +423,28 @@ Normalmente no tendrás que verla ni gestionarla.
 Si utilizas otra vez:
 
 ```text
-video_nana.txt
+guion_video.txt
 ```
 
 la salida volverá a llamarse:
 
 ```text
-video_nana_voz.wav
+guion_video_voz.wav
 ```
 
-Por tanto, la nueva generación puede sustituir la anterior.
+La nueva generación puede sustituir la anterior.
 
-Si quieres conservar varias versiones:
+Si quieres conservar varias versiones, puedes:
 
-```text
-video_nana_v1.txt
-video_nana_v2.txt
-```
-
-o renombra/mueve el WAV anterior antes de volver a generar.
+- renombrar el guion;
+- renombrar el WAV anterior;
+- mover el WAV anterior antes de generar de nuevo.
 
 ---
 
-# 19. La misma configuración no produce siempre exactamente la misma interpretación
+# 19. Reproducibilidad
 
-El generador utiliza una seed controlada para hacer el comportamiento más reproducible.
-
-La configuración inicial es:
+El generador utiliza una seed controlada:
 
 ```text
 BASE_SEED = 12345
@@ -467,14 +452,17 @@ BASE_SEED = 12345
 
 Cada bloque utiliza una seed derivada de esa base.
 
+Esto ayuda a mantener cierto grado de reproducibilidad.
+
 Aun así, cambios en:
 
 - texto;
 - puntuación;
-- bloques;
+- tamaño de bloques;
 - modelo;
 - dependencias;
 - voz;
+- parámetros;
 
 pueden producir diferencias audibles.
 
@@ -496,7 +484,7 @@ CFG_WEIGHT = 0.20
 TEMPERATURE = 0.80
 ```
 
-Esta configuración fue elegida como un punto de partida útil para narración en español.
+Esta configuración sirve como punto de partida.
 
 No significa que sea la mejor para todas las voces.
 
@@ -554,13 +542,13 @@ Es mejor:
 4. generar una prueba corta;
 5. comparar.
 
-De esta forma sabrás qué parámetro produjo realmente el cambio.
+Así podrás identificar qué parámetro produjo realmente el cambio.
 
 ---
 
 # 23. Utiliza textos cortos para probar configuraciones
 
-No generes un vídeo entero cada vez que quieras comparar parámetros.
+No generes un guion completo cada vez que quieras comparar parámetros.
 
 Crea un `.txt` corto con varias frases representativas.
 
@@ -569,9 +557,9 @@ Por ejemplo:
 ```text
 Esta es una prueba de voz.
 
-Quiero comprobar cómo cambia el ritmo, la entonación y la naturalidad.
+Quiero comprobar el ritmo, la entonación y la naturalidad.
 
-También quiero escuchar cómo termina una frase más larga.
+También quiero escuchar cómo termina una frase un poco más larga.
 ```
 
 Genera ese archivo varias veces cambiando únicamente el parámetro que quieras comparar.
@@ -592,7 +580,12 @@ afecta a la expresividad de la generación.
 
 Valores más altos pueden producir una interpretación más marcada.
 
-También pueden modificar el ritmo y la estabilidad.
+También pueden modificar:
+
+- ritmo;
+- estabilidad;
+- energía;
+- entonación.
 
 No asumas que:
 
@@ -612,11 +605,16 @@ El parámetro:
 CFG_WEIGHT
 ```
 
-afecta al comportamiento de la generación y puede influir en el ritmo.
+puede influir en:
 
-Reducirlo puede hacer que algunas voces se sientan diferentes o algo menos rígidas.
+- ritmo;
+- estabilidad;
+- carácter de la voz;
+- forma de interpretar el texto.
 
 No existe un valor universal.
+
+Una pequeña modificación puede cambiar el resultado de forma audible.
 
 ---
 
@@ -630,13 +628,14 @@ TEMPERATURE
 
 afecta a la variabilidad de la generación.
 
-Valores diferentes pueden cambiar:
+Valores diferentes pueden modificar:
 
 - entonación;
 - estabilidad;
-- forma de pronunciar algunas frases.
+- pronunciación;
+- expresividad.
 
-Si una configuración ya funciona bien, no es necesario modificarla constantemente.
+Si una configuración ya funciona bien, no es necesario modificarla continuamente.
 
 ---
 
@@ -649,9 +648,11 @@ TARGET_CHARS = 500
 HARD_MAX = 650
 ```
 
-No es un límite propio del modelo de 300 caracteres.
+Esto no significa que Chatterbox tenga un límite real de 500 o 650 caracteres.
 
-El programa agrupa varias frases para dar a Chatterbox suficiente contexto.
+Son valores elegidos para dividir narraciones largas en fragmentos manejables.
+
+El programa agrupa varias frases para dar al modelo suficiente contexto.
 
 Esto ayuda a conservar:
 
@@ -663,24 +664,23 @@ Esto ayuda a conservar:
 
 # 28. No reduzcas demasiado los bloques
 
-Generar una frase de pocos segundos de forma independiente puede producir una voz muy buena.
+Una frase corta generada de forma independiente puede sonar muy bien.
 
-Sin embargo, generar cada frase de un guion por separado puede provocar:
+Sin embargo, generar cada frase por separado puede provocar:
 
-- cambios de voz;
+- cambios de timbre;
 - diferencias de volumen;
 - entonación inconsistente;
-- sensación de audio pegado.
+- sensación de audio pegado;
+- falta de continuidad.
 
 Por eso el programa intenta trabajar con bloques relativamente largos.
 
 ---
 
-# 29. Bloques demasiado largos
+# 29. Tampoco utilices bloques excesivamente largos
 
-Tampoco conviene enviar varios minutos completos en una sola generación.
-
-Los bloques excesivamente largos pueden aumentar la posibilidad de:
+Enviar varios minutos completos en una sola generación puede aumentar la posibilidad de:
 
 - cambios extraños de voz;
 - ritmo irregular;
@@ -724,7 +724,7 @@ PAUSA_NORMAL = 0.35
 PAUSA_SECCION = 0.80
 ```
 
-No pongas pausas enormes esperando compensar un guion demasiado corto.
+No utilices pausas enormes para compensar un guion demasiado corto.
 
 Un exceso de silencios puede hacer que la narración parezca artificial.
 
@@ -732,7 +732,7 @@ Un exceso de silencios puede hacer que la narración parezca artificial.
 
 # 32. Voz buena en pruebas cortas pero peor en textos largos
 
-Puede ocurrir que una prueba de 10 segundos suene mejor que una narración de varios minutos.
+Puede ocurrir que una prueba de pocos segundos suene mejor que una narración de varios minutos.
 
 Esto no significa necesariamente que la instalación esté mal.
 
@@ -755,17 +755,31 @@ puedes generar nuevamente el guion.
 
 Una nueva generación puede producir una interpretación diferente.
 
-Si el problema ocurre siempre en la misma frase, revisa primero su puntuación.
+Si el problema ocurre siempre en la misma frase, revisa primero:
+
+- puntuación;
+- longitud de la frase;
+- signos de interrogación;
+- comas;
+- puntos;
+- puntos suspensivos.
 
 ---
 
 # 34. Si una palabra se pronuncia mal
 
-Antes de modificar parámetros generales, prueba a cambiar únicamente la puntuación alrededor de esa palabra o frase.
+Antes de modificar parámetros generales, prueba a revisar la puntuación alrededor de esa palabra o frase.
 
-No cambies la ortografía correcta sin comprobar antes que realmente sea necesario.
+Los siguientes elementos pueden ser especialmente variables:
 
-Palabras inglesas, nombres propios y términos de videojuegos pueden ser especialmente variables.
+- nombres propios;
+- siglas;
+- palabras inglesas;
+- términos técnicos;
+- nombres inventados;
+- palabras poco frecuentes.
+
+No cambies la ortografía correcta sin comprobar antes que sea necesario.
 
 ---
 
@@ -773,94 +787,96 @@ Palabras inglesas, nombres propios y términos de videojuegos pueden ser especia
 
 Primero revisa:
 
-- frases extremadamente largas;
+- frases demasiado largas;
 - falta de comas;
 - falta de puntos;
-- bloques de texto sin respiraciones naturales.
+- falta de pausas naturales;
+- fragmentos demasiado densos.
 
-Puedes probar una puntuación más oral.
-
-Por ejemplo:
-
-```text
-Sabes lo que ocurre y aun así sigues entrando porque crees que esta vez será diferente.
-```
-
-puede convertirse en:
+Una frase como:
 
 ```text
-Sabes lo que ocurre... y aun así, sigues entrando, porque crees que esta vez será diferente.
+Todo ocurre muy rápido y cuando intentas reaccionar ya ha empezado la siguiente parte.
 ```
 
-No añadas pausas sin sentido únicamente para aumentar segundos.
+puede recibir más estructura:
+
+```text
+Todo ocurre muy rápido... y cuando intentas reaccionar, ya ha empezado la siguiente parte.
+```
+
+El objetivo es orientar mejor la lectura, no llenar el texto de signos.
 
 ---
 
 # 36. Si necesitas una duración concreta
 
-Chatterbox no está diseñado en esta configuración para garantizar que:
+Chatterbox no está diseñado en esta configuración para garantizar:
 
 ```text
 un bloque de texto = exactamente X segundos
 ```
 
-Si necesitas una sincronización exacta para vídeo, las opciones más seguras son:
+Si necesitas sincronización con vídeo, las opciones más seguras son:
 
 - adaptar la cantidad de texto;
-- ajustar el montaje del vídeo;
+- ajustar el montaje;
 - insertar pausas naturales;
-- cortar y colocar la narración dentro del editor.
+- colocar la narración dentro del editor;
+- modificar ligeramente la estructura del guion.
 
 Evita ralentizar agresivamente el WAV terminado.
 
-Puede deteriorar mucho la naturalidad.
+Puede degradar mucho la naturalidad.
 
 ---
 
-# 37. Preparación del guion antes de TTS
+# 37. Preparar el guion específicamente para TTS
 
-Si utilizas una IA para escribir el guion, puede ser útil tener dos fases distintas:
+Puede ser útil tener dos versiones del mismo contenido:
 
 ```text
 Guion normal
         ↓
-Preparación para TTS
+Guion preparado para TTS
         ↓
 Chatterbox
 ```
 
-La preparación para TTS puede modificar exclusivamente:
+La versión preparada para TTS puede modificar únicamente:
 
 - puntuación;
-- pausas;
-- saltos;
-- signos de interrogación;
-- signos de exclamación;
+- comas;
+- puntos;
+- puntos suspensivos;
+- interrogaciones;
+- exclamaciones;
+- saltos de línea;
 
-sin cambiar necesariamente las palabras.
+sin alterar necesariamente las palabras.
 
-Esto permite conservar el contenido y mejorar la forma en que el TTS interpreta el ritmo.
+Esto ayuda a conservar el contenido mientras se ofrecen mejores señales de ritmo al sintetizador.
 
 ---
 
-# 38. No dependas de los saltos de línea
+# 38. Los saltos de línea no son suficientes
 
-El generador actual procesa los bloques principalmente a partir de:
+El generador procesa el texto principalmente utilizando:
 
 - timestamps;
 - frases;
 - puntuación;
-- tamaño del texto.
+- tamaño del bloque.
 
-Los saltos de línea sirven para que el guion sea legible, pero no deben ser la única herramienta para indicar pausas.
+Los saltos de línea ayudan a organizar el guion para una persona, pero no deben ser la única forma de indicar pausas.
 
-Utiliza puntuación explícita donde la pausa sea importante.
+Si una pausa es importante, utiliza también una puntuación adecuada.
 
 ---
 
 # 39. Cambiar permanentemente la voz predeterminada
 
-Para cambiar la voz utilizada al pulsar:
+Para cambiar la voz utilizada cuando seleccionas:
 
 ```text
 Sí
@@ -874,7 +890,7 @@ en la pregunta de voz predeterminada:
 voces/
 ```
 
-2. elimina o mueve la referencia actual;
+2. elimina o mueve la referencia anterior;
 
 3. coloca la nueva referencia;
 
@@ -884,13 +900,13 @@ voces/
 voz_predeterminada.mp3
 ```
 
-La próxima generación utilizará esa voz cuando selecciones la opción predeterminada.
+La próxima generación utilizará esa referencia.
 
 ---
 
-# 40. Probar una voz sin convertirla en predeterminada
+# 40. Probar otra voz sin hacerla predeterminada
 
-No necesitas renombrarla.
+No necesitas renombrar el archivo.
 
 Ejecuta:
 
@@ -898,13 +914,13 @@ Ejecuta:
 Generar voz.bat
 ```
 
-Cuando pregunte por la voz predeterminada, pulsa:
+Cuando pregunte por la voz predeterminada, selecciona:
 
 ```text
 No
 ```
 
-y selecciona el nuevo:
+y elige el nuevo:
 
 ```text
 .mp3
@@ -918,29 +934,22 @@ o:
 
 ---
 
-# 41. No es necesario reiniciar Chatterbox al cambiar de voz
+# 41. No es necesario reinstalar nada al cambiar de voz
 
 Cada ejecución del BAT inicia una generación nueva.
 
-Puedes utilizar:
+Puedes utilizar una referencia diferente en cada ejecución.
 
-```text
-voz A
-```
+No necesitas:
 
-en una ejecución y:
-
-```text
-voz B
-```
-
-en la siguiente.
-
-No necesitas reinstalar nada.
+- reinstalar Chatterbox;
+- descargar de nuevo el modelo;
+- recrear el entorno;
+- modificar WSL.
 
 ---
 
-# 42. Organización recomendada de las salidas
+# 42. Organización de las salidas
 
 La carpeta:
 
@@ -950,22 +959,13 @@ salidas/
 
 puede llenarse con el tiempo.
 
-Puedes mover los WAV terminados a las carpetas de tus proyectos de vídeo.
-
-Por ejemplo:
-
-```text
-Proyecto vídeo/
-├── guion.txt
-├── narracion.wav
-└── ...
-```
+Puedes mover los WAV terminados a las carpetas donde organices tus proyectos.
 
 No es necesario conservar todos los resultados dentro del repositorio.
 
 ---
 
-# 43. GitHub y archivos personales
+# 43. No subas archivos personales a GitHub
 
 Nunca hagas commit de:
 
@@ -974,31 +974,32 @@ voces reales
 audios generados
 modelos
 cachés
+archivos temporales
 ```
 
-El repositorio está pensado para contener solamente:
+El repositorio debe contener únicamente:
 
 - scripts;
 - documentación;
 - archivos de configuración;
-- estructura vacía.
+- estructura vacía necesaria.
 
 ---
 
-# 44. Utilizarlo en otro PC
+# 44. Utilizar el proyecto en otro PC
 
-Para utilizar el proyecto en otro ordenador:
+Para utilizarlo en otro ordenador:
 
 1. clona o descarga el repositorio;
-2. sigue desde `01_REQUISITOS.md`;
+2. sigue `01_REQUISITOS.md`;
 3. instala WSL2;
 4. prepara el entorno;
 5. instala Chatterbox;
 6. descarga el modelo;
-7. añade tu propia voz;
+7. añade una voz de referencia;
 8. ejecuta el BAT.
 
-No necesitas copiar:
+No necesitas copiar desde el ordenador anterior:
 
 ```text
 hf_cache
@@ -1006,13 +1007,11 @@ miniforge3
 ChatterboxES
 ```
 
-desde el ordenador antiguo.
-
-Es más seguro reproducir la instalación siguiendo la documentación.
+La instalación puede reproducirse desde cero siguiendo la documentación.
 
 ---
 
-# 45. Qué debes guardar como copia de seguridad
+# 45. Qué conviene guardar como copia de seguridad
 
 Si quieres conservar únicamente lo importante, guarda:
 
@@ -1020,12 +1019,12 @@ Si quieres conservar únicamente lo importante, guarda:
 repositorio
 voces personales
 guiones
-audios finales que quieras conservar
+audios finales importantes
 ```
 
 Los modelos pueden volver a descargarse.
 
-El entorno Python también puede reconstruirse siguiendo el tutorial.
+El entorno Python puede reconstruirse siguiendo el tutorial.
 
 ---
 
@@ -1036,19 +1035,19 @@ Después de instalar todo:
 ```text
 1. Preparar guion .txt
 2. Revisar puntuación
-3. Doble clic en Generar voz.bat
+3. Ejecutar Generar voz.bat
 4. Elegir guion
 5. Elegir voz
 6. Esperar
 7. Recoger WAV en salidas
-8. Llevar WAV al editor de vídeo
+8. Utilizar el WAV donde sea necesario
 ```
 
 ---
 
 # 47. Cuándo tocar la configuración
 
-No modifiques parámetros simplemente porque una frase aislada haya salido rara.
+No modifiques parámetros generales simplemente porque una frase aislada haya salido rara.
 
 Primero comprueba:
 
@@ -1066,7 +1065,7 @@ CFG
 Temperature
 ```
 
-solo cuando quieras cambiar de forma general el comportamiento de la voz.
+cuando quieras cambiar de forma general el comportamiento de la voz.
 
 ---
 
@@ -1075,15 +1074,15 @@ solo cuando quieras cambiar de forma general el comportamiento de la voz.
 Si tienes una configuración que:
 
 - suena natural;
-- mantiene una voz estable;
-- sirve para tus vídeos;
+- mantiene una voz suficientemente estable;
+- sirve para tu uso;
 - no presenta errores graves;
 
 es mejor conservarla.
 
 Los modelos generativos tienen variabilidad.
 
-Buscar indefinidamente una configuración perfecta puede producir resultados diferentes sin una mejora consistente.
+Buscar indefinidamente una configuración perfecta puede producir cambios sin una mejora consistente.
 
 ---
 
@@ -1095,4 +1094,4 @@ Continúa con:
 08_ERRORES_Y_SOLUCIONES.md
 ```
 
-Ese documento reúne los errores más importantes que pueden aparecer y las soluciones que realmente necesita esta instalación.
+Ese documento reúne los errores más importantes que pueden aparecer durante la instalación y el uso, junto con sus soluciones.
