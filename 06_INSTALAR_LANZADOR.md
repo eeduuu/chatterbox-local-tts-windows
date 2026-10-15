@@ -95,6 +95,8 @@ chatterbox-local-tts-windows/
 ├── launcher.ps1
 ├── generar_guion.py
 │
+├── guiones/
+│
 ├── voces/
 │
 └── salidas/
@@ -139,9 +141,8 @@ Se encarga de la parte de Windows.
 Hace automáticamente lo siguiente:
 
 1. localiza la carpeta donde está el repositorio;
-2. abre una ventana para seleccionar el guion `.txt`;
-3. comprueba si existe una voz predeterminada;
-4. permite elegir otra voz si quieres;
+2. abre la carpeta guiones para seleccionar el guion .txt;
+3. abre la carpeta voces para seleccionar la voz;
 5. convierte las rutas de Windows a rutas compatibles con WSL;
 6. localiza el Python del entorno `chatterbox`;
 7. ejecuta `generar_guion.py` dentro de Ubuntu 22.04;
@@ -189,34 +190,9 @@ chatterbox-local-tts-windows/
 
 ---
 
-# 6. Configurar una voz predeterminada
+# 6. Guardar tus voces
 
-Si quieres que el programa te pregunte:
-
-```text
-Usar la voz predeterminada?
-```
-
-coloca tu referencia dentro de:
-
-```text
-voces/
-```
-
-con este nombre:
-
-```text
-voz_predeterminada.mp3
-```
-
-La estructura será:
-
-```text
-voces/
-└── voz_predeterminada.mp3
-```
-
-No subas este archivo a GitHub.
+Coloca tus referencias (.mp3 o .wav) dentro de voces/ con el nombre que quieras. No subas estos archivos a GitHub.
 
 ---
 
@@ -232,14 +208,6 @@ mi_voz.wav
 
 o cualquier otro nombre y seleccionarla manualmente cuando ejecutes el lanzador.
 
-La detección automática de voz predeterminada utiliza:
-
-```text
-voz_predeterminada.mp3
-```
-
-Si no existe ese archivo, el lanzador abrirá directamente el selector de voz.
-
 ---
 
 # 8. Utilizar varias voces
@@ -254,16 +222,12 @@ Por ejemplo:
 
 ```text
 voces/
-├── voz_predeterminada.mp3
+├── voz_1.mp3
 ├── voz_2.mp3
 └── voz_3.wav
 ```
 
-Cuando ejecutes el lanzador:
-
-- pulsa `Sí` para utilizar `voz_predeterminada.mp3`;
-- pulsa `No` para seleccionar otra referencia.
-
+Cuando ejecutes el lanzador se abrirá la carpeta voces y podrás elegir la que quieras.
 No necesitas reinstalar Chatterbox para cambiar de voz.
 
 ---
@@ -297,25 +261,9 @@ Los `.wav` generados no deben subirse al repositorio.
 
 ---
 
-# 10. No necesitas una carpeta `guiones`
+# 10. Carpeta guiones
 
-El lanzador permite seleccionar un archivo `.txt` desde cualquier ubicación del ordenador.
-
-Por tanto, no es obligatorio guardar los guiones dentro del repositorio.
-
-Puedes tenerlos donde normalmente organices tus vídeos.
-
-Por ejemplo:
-
-```text
-Documentos/
-└── Guiones YouTube/
-    └── video_01.txt
-```
-
-Al ejecutar el BAT simplemente seleccionas ese archivo.
-
-Esto evita duplicar guiones innecesariamente.
+La ventana para elegir el guion se abre siempre en la carpeta guiones/. Guarda ahí tus .txt. Si lo prefieres, desde esa misma ventana puedes ir a otra carpeta. Los guiones no se suben a GitHub.
 
 ---
 
@@ -521,7 +469,7 @@ Haz doble clic en:
 Generar voz.bat
 ```
 
-Debe abrirse una ventana para seleccionar el guion.
+Debe abrirse una ventana en la carpeta guiones para seleccionar el guion.
 
 Selecciona un `.txt`.
 
@@ -529,35 +477,7 @@ Selecciona un `.txt`.
 
 # 20. Seleccionar la voz
 
-Si existe:
-
-```text
-voces/voz_predeterminada.mp3
-```
-
-aparecerá una pregunta similar a:
-
-```text
-Usar la voz predeterminada?
-```
-
-Selecciona:
-
-```text
-Sí
-```
-
-para utilizarla.
-
-Selecciona:
-
-```text
-No
-```
-
-para elegir manualmente otro archivo.
-
-Si no existe una voz predeterminada, aparecerá directamente el selector.
+Después se abrirá otra ventana en la carpeta voces. Selecciona el .mp3 o .wav que quieras usar.
 
 ---
 
@@ -962,6 +882,7 @@ Antes de publicar el repositorio debe existir un:
 que ignore como mínimo:
 
 ```text
+guiones/*.txt
 voces/*.mp3
 voces/*.wav
 salidas/*.wav
@@ -982,9 +903,11 @@ chatterbox-local-tts-windows/
 ├── launcher.ps1
 ├── generar_guion.py
 │
+├──guiones/
+│
 ├── voces/
 │   ├── README.md
-│   └── voz_predeterminada.mp3
+│   └── mi_voz.mp3
 │
 └── salidas/
     └── .gitkeep
