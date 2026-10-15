@@ -4,10 +4,10 @@ $Distro = 'Ubuntu-22.04'
 
 $Base = Split-Path -Parent $MyInvocation.MyCommand.Path
 
+$GuionesDir = Join-Path $Base 'guiones'
 $VocesDir = Join-Path $Base 'voces'
 $SalidasDir = Join-Path $Base 'salidas'
 
-$VozDefault = Join-Path $VocesDir 'voz_predeterminada.mp3'
 $PythonScript = Join-Path $Base 'generar_guion.py'
 
 function Mostrar-Error {
@@ -46,6 +46,7 @@ if (-not (Test-Path -LiteralPath $PythonScript -PathType Leaf)) {
 }
 
 New-Item -ItemType Directory -Force -Path $VocesDir | Out-Null
+New-Item -ItemType Directory -Force -Path $GuionesDir | Out-Null
 New-Item -ItemType Directory -Force -Path $SalidasDir | Out-Null
 
 # ------------------------------------------------------------
@@ -57,6 +58,7 @@ $dlgGuion.Title = 'Selecciona el guion preparado para TTS'
 $dlgGuion.Filter = 'Archivos de texto (*.txt)|*.txt'
 $dlgGuion.Multiselect = $false
 $dlgGuion.CheckFileExists = $true
+$dlgGuion.InitialDirectory = $GuionesDir
 
 if ($dlgGuion.ShowDialog() -ne [System.Windows.Forms.DialogResult]::OK) {
     exit 0
@@ -68,44 +70,18 @@ $Guion = $dlgGuion.FileName
 # Seleccionar voz
 # ------------------------------------------------------------
 
-if (Test-Path -LiteralPath $VozDefault -PathType Leaf) {
-    $respuesta = [System.Windows.Forms.MessageBox]::Show(
-        'Usar la voz predeterminada?',
-        'Chatterbox Local TTS',
-        [System.Windows.Forms.MessageBoxButtons]::YesNo,
-        [System.Windows.Forms.MessageBoxIcon]::Question
-    )
+$dlgVoz = New-Object System.Windows.Forms.OpenFileDialog
+$dlgVoz.Title = 'Selecciona una voz de referencia'
+$dlgVoz.Filter = 'Audio (*.mp3;*.wav)|*.mp3;*.wav'
+$dlgVoz.InitialDirectory = $VocesDir
+$dlgVoz.Multiselect = $false
+$dlgVoz.CheckFileExists = $true
 
-    if ($respuesta -eq [System.Windows.Forms.DialogResult]::Yes) {
-        $Voz = $VozDefault
-    }
-    else {
-        $dlgVoz = New-Object System.Windows.Forms.OpenFileDialog
-        $dlgVoz.Title = 'Selecciona una voz de referencia'
-        $dlgVoz.Filter = 'Audio (*.mp3;*.wav)|*.mp3;*.wav'
-        $dlgVoz.Multiselect = $false
-        $dlgVoz.CheckFileExists = $true
-
-        if ($dlgVoz.ShowDialog() -ne [System.Windows.Forms.DialogResult]::OK) {
-            exit 0
-        }
-
-        $Voz = $dlgVoz.FileName
-    }
+if ($dlgVoz.ShowDialog() -ne [System.Windows.Forms.DialogResult]::OK) {
+    exit 0
 }
-else {
-    $dlgVoz = New-Object System.Windows.Forms.OpenFileDialog
-    $dlgVoz.Title = 'Selecciona una voz de referencia'
-    $dlgVoz.Filter = 'Audio (*.mp3;*.wav)|*.mp3;*.wav'
-    $dlgVoz.Multiselect = $false
-    $dlgVoz.CheckFileExists = $true
 
-    if ($dlgVoz.ShowDialog() -ne [System.Windows.Forms.DialogResult]::OK) {
-        exit 0
-    }
-
-    $Voz = $dlgVoz.FileName
-}
+$Voz = $dlgVoz.FileName
 
 # ------------------------------------------------------------
 # Convertir rutas de Windows a rutas WSL
