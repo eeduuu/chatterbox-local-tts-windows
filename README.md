@@ -101,7 +101,7 @@ La estructura prevista es:
 
 ```text
 voces/
-└── voz_predeterminada.mp3
+└── mi_voz.mp3
 ```
 
 También pueden utilizarse archivos `.wav`.
@@ -133,6 +133,9 @@ chatterbox-local-tts-windows/
 ├── launcher.ps1
 ├── generar_guion.py
 ├── .gitignore
+│
+├── guiones/
+│   └── .gitkeep
 │
 ├── voces/
 │   └── README.md
@@ -243,8 +246,8 @@ El proceso habitual es:
 
 1. Preparar el guion en un archivo `.txt`.
 2. Ejecutar `Generar voz.bat`.
-3. Seleccionar el guion.
-4. Elegir la voz predeterminada o seleccionar otra.
+3. Seleccionar el guion (se abre la carpeta guiones).
+4. Seleccionar la voz (se abre la carpeta voces).
 5. Esperar a que termine Chatterbox.
 6. Abrir el `.wav` generado dentro de `salidas`.
 
