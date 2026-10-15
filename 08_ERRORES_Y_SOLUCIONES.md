@@ -810,31 +810,9 @@ La próxima carga descargará cualquier archivo que falte.
 
 ---
 
-# 27. No aparece la pregunta de voz predeterminada
+# 27. La ventana no se abre en la carpeta guiones o voces
 
-La voz automática debe llamarse:
-
-```text
-voz_predeterminada.mp3
-```
-
-y estar en:
-
-```text
-voces/
-```
-
-La estructura debe ser:
-
-```text
-chatterbox-local-tts-windows/
-└── voces/
-    └── voz_predeterminada.mp3
-```
-
-Si no existe, el lanzador abrirá directamente el selector de archivos.
-
-Eso es comportamiento normal.
+Comprueba que launcher.ps1 está en la raíz del repositorio, junto a las carpetas guiones/ y voces/. Si no existen, el lanzador las crea al ejecutarse.
 
 ---
 
