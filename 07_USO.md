@@ -31,7 +31,7 @@ Por ejemplo:
 guion_video.txt
 ```
 
-Puedes guardarlo en cualquier carpeta de Windows.
+Guárdalo en la carpeta guiones del repositorio.
 
 No es necesario copiarlo dentro del repositorio.
 
@@ -155,7 +155,7 @@ No necesitas:
 
 # 6. Seleccionar el guion
 
-Aparecerá una ventana para elegir un archivo.
+Aparecerá una ventana abierta en la carpeta guiones.
 
 Selecciona el `.txt` que quieras convertir a voz.
 
@@ -171,29 +171,7 @@ Si cancelas esta ventana, el programa se cerrará sin generar nada.
 
 # 7. Seleccionar la voz
 
-Si existe:
-
-```text
-voces/voz_predeterminada.mp3
-```
-
-el programa preguntará si quieres utilizarla.
-
-Pulsa:
-
-```text
-Sí
-```
-
-para utilizar la voz predeterminada.
-
-Pulsa:
-
-```text
-No
-```
-
-para elegir otra referencia.
+A continuación aparecerá otra ventana abierta en la carpeta voces. Selecciona la voz que quieras usar. Si cancelas esta ventana, el programa se cerrará sin generar nada.
 
 ---
 
@@ -874,63 +852,15 @@ Si una pausa es importante, utiliza también una puntuación adecuada.
 
 ---
 
-# 39. Cambiar permanentemente la voz predeterminada
+# 39. Añadir una voz nueva
 
-Para cambiar la voz utilizada cuando seleccionas:
-
-```text
-Sí
-```
-
-en la pregunta de voz predeterminada:
-
-1. abre:
-
-```text
-voces/
-```
-
-2. elimina o mueve la referencia anterior;
-
-3. coloca la nueva referencia;
-
-4. llámala:
-
-```text
-voz_predeterminada.mp3
-```
-
-La próxima generación utilizará esa referencia.
+Copia el archivo .mp3 o .wav a la carpeta voces/. No hace falta ningún nombre especial.
 
 ---
 
-# 40. Probar otra voz sin hacerla predeterminada
+# 40. Probar otra voz
 
-No necesitas renombrar el archivo.
-
-Ejecuta:
-
-```text
-Generar voz.bat
-```
-
-Cuando pregunte por la voz predeterminada, selecciona:
-
-```text
-No
-```
-
-y elige el nuevo:
-
-```text
-.mp3
-```
-
-o:
-
-```text
-.wav
-```
+Ejecuta Generar voz.bat y, cuando se abra la carpeta voces, elige el nuevo archivo.
 
 ---
 
