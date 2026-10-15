@@ -10,6 +10,8 @@
 
 voces/*
 !voces/README.md
+guiones/*
+!guiones/.gitkeep
 
 
 # ------------------------------------------------------------
