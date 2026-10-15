@@ -257,34 +257,18 @@ No combines varias personas dentro de un mismo archivo.
 
 ---
 
-# Voz predeterminada del repositorio
+# Dónde guardar la voz
 
-El lanzador que configuraremos en el siguiente paso permitirá tener una voz predeterminada.
+Guarda tu referencia en la carpeta voces/ del repositorio, con el nombre que quieras (.mp3 o .wav).
 
-Para mantener el proyecto genérico utilizaremos el nombre:
-
-```text
-voz_predeterminada.mp3
-```
-
-La ubicación será:
-
-```text
-chatterbox-local-tts-windows/
-└── voces/
-    └── voz_predeterminada.mp3
-```
-
-Si tu referencia está en `.wav`, también podrás seleccionar manualmente ese archivo desde el lanzador.
-
----
+Al generar un audio, el lanzador abrirá esa carpeta para que la elijas.
 
 # Si quieres utilizar siempre otra voz
 
 No estás obligado a llamar a todos los archivos:
 
 ```text
-voz_predeterminada.mp3
+mi_voz.mp3
 ```
 
 Puedes guardar varias referencias:
@@ -296,31 +280,12 @@ voces/
 └── otra_voz.wav
 ```
 
-Al generar un audio podrás:
+Al generar un audio podrás elegir cualquiera de ellas:
 
-1. utilizar la voz predeterminada;
-2. elegir otro `.mp3`;
-3. elegir otro `.wav`.
+1. `.mp3`.
+2. `.wav`.
 
 No será necesario modificar Chatterbox ni reinstalar los modelos para cambiar de voz.
-
----
-
-# Si no quieres una voz predeterminada
-
-También puedes dejar la carpeta:
-
-```text
-voces/
-```
-
-sin:
-
-```text
-voz_predeterminada.mp3
-```
-
-En ese caso el lanzador te pedirá seleccionar manualmente una referencia cada vez.
 
 ---
 
@@ -419,7 +384,7 @@ La carpeta podrá existir en GitHub, pero las voces reales permanecerán únicam
 No hagas:
 
 ```bash
-git add voces/voz_predeterminada.mp3
+git add voces/mi_voz.mp3
 ```
 
 ni subas otras grabaciones personales.
@@ -548,15 +513,7 @@ sin efectos
 sin saturación
 ```
 
-Si quieres utilizarlo como voz predeterminada, cuando tengamos el repositorio en Windows lo guardaremos como:
-
-```text
-voces/voz_predeterminada.mp3
-```
-
-Si prefieres seleccionar siempre la voz manualmente, puedes conservar cualquier nombre.
-
----
+Cuando tengas el repositorio en Windows, guárdalo dentro de voces/.
 
 # Siguiente paso
 
